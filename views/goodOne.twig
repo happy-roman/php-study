@@ -1,0 +1,13 @@
+{% extends 'layouts/main.twig' %}
+
+{% block content %}
+
+    <div>
+        <img src='https://via.placeholder.com/650' class="" alt="img"/><br>
+        <p class="counter">Название: {{ good.name }}</p>
+        <p class="counter">Цена: {{ good.price }}</p>
+        <p class="counter">Описание товара: {{ good.text }}</p>
+        <a href="/basket/add?id={{ good.id }}">Добавить в корзину</a>
+    </div>
+
+{% endblock %}

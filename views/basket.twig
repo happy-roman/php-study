@@ -1,0 +1,16 @@
+{% extends 'layouts/main.twig' %}
+
+{% block content %}
+{% for good in basket %}
+    <div>
+        <h1>{{ good.name }} </h1>
+        <h3>Цена:  {{ good.price }}  </h3>
+        <p>
+            <a href="/good/one?id={{ good.id }}">
+                <img src="https://via.placeholder.com/75" alt = "img"/>
+            </a>
+        </p>
+        <p>Сумма: {{ good.price * good.count }}</p>
+    </div>
+    <hr>
+{% endblock %}

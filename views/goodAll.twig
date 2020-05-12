@@ -1,0 +1,21 @@
+{% extends 'layouts/main.twig' %}
+
+{% block content %}
+    {% for good in goods %}
+        <div>
+            <h1>{{ good.name }} </h1>
+            <h3>Цена:  {{ good.price }}  </h3>
+            <p>
+                <a href="/good/one?id={{ good.id }}">
+                    <img src="https://via.placeholder.com/150" alt = "img"/><!--заменить картинку-->
+                </a>
+            </p>
+            <a href="/basket/add?id={{ good.id }}">Добавить в корзину</a>
+        </div>
+    {% else %}
+        <p>Нет товаров</p>
+    {% endfor %}
+    <form>
+        <input type="submit" name="more" value="Показать еще">
+    </form>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+</head>
+<body>
+
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <ul>
+            {% for item in menu %}
+                <li><a href="{{item.href}}">{{item.name}}</a></li>
+            {% else %}
+                <li><a href="/">Главная</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="" style="padding-top: 40px;
+                          display: grid;
+                          width: 100%;
+                          max-width: 1200px;
+                          margin: 0 auto;
+                          grid-template-columns: repeat(5, 1fr);
+                          grid-gap: 20px;">
+        {% block content %}
+            <h1>Добропожаловать</h1>
+        {% endblock %}
+    </div>
+</body>
+</html>
