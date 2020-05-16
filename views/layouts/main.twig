@@ -7,12 +7,25 @@
 <body>
 
     <div style="max-width: 1200px; margin: 0 auto;">
+        <p>login: roman | password: 555</p>
+        {% block auth %}
+        {% endblock %}
+{#        <form method="post">#}
+{#            <input type="text" name="login" placeholder="login">#}
+{#            <input type="text" name="password" placeholder="password">#}
+{#            <input type="submit" name="login" value="Log in">#}
+{#        </form>#}
         <ul>
+
             {% for item in menu %}
                 <li><a href="{{item.href}}">{{item.name}}</a></li>
             {% else %}
                 <li><a href="/">Главная</a></li>
             {% endfor %}
+            {% if _SESSION.auth == true %}
+                <li><a href="/good/insert">Add Good</a></li>
+                <li><a href="/user/all">Users</a></li>
+            {% endif %}
         </ul>
 
     </div>
@@ -25,7 +38,7 @@
                           grid-template-columns: repeat(5, 1fr);
                           grid-gap: 20px;">
         {% block content %}
-            <h1>Добропожаловать</h1>
+            <h1>должен быть контент</h1>
         {% endblock %}
     </div>
 </body>

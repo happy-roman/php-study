@@ -25,7 +25,11 @@ class BasketServices
 
         if (empty($goods[$id])) {
             $goods[$id] = [
-                'good' => $good,
+
+//                'good' => $good,
+                'name'=>$good->name,
+                'price'=>$good->price,
+                'id'=>$good->id,
                 'count' => 1
             ];
         } else {
@@ -36,4 +40,28 @@ class BasketServices
 
         return true;
     }
+    public function remove(Request $request, GoodRepository $goodRepository )
+    {
+        $id = $request->getId();
+        if (empty($id)) {
+            return false;
+        }
+
+        /** @var Good $good */
+        $good = $goodRepository->getOne($id);
+        if (empty($good)) {
+            return false;
+        }
+
+        $goods = $request->getSession('goods');
+
+        if ($goods[$id]['count']==1) {
+            unset($_SESSION['goods'][$id]);
+        }
+        $goods[$id]['count'] = $goods[$id]['count']-1 ;
+        $request->setSession('goods', $goods);
+        return true;
+    }
+
+
 }

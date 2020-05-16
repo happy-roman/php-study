@@ -54,25 +54,20 @@ abstract class Controller
     {
         return [
             [
-                'name'=> 'Users',
-                'href'=> '/user/all',
+                'name'=>'Sign In',
+                'href'=>'/auth/auth'
+            ],
+            [
+                'name'=> 'Sign Up',
+                'href'=> '/user/insert',
             ],
             [
                 'name'=> 'Goods',
                 'href'=> '/good/all',
             ],
             [
-                'name'=> 'Add good',
-                'href'=> '/good/insert',
-            ],
-            [
-                'name'=> 'Add user',
-                'href'=> '/user/insert',
-            ],
-            [
-                'name'=> 'Basket',
+                'name'=> 'My Basket',
                 'href'=> '/basket',
-
             ]
         ];
     }

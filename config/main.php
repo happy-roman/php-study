@@ -30,5 +30,8 @@ return [
         'basketServices' => [
             'class' => \App\services\BasketServices::class
         ],
+        'authController' => [
+            \App\controllers\AuthController::class
+        ]
     ]
 ];

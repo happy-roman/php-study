@@ -1,0 +1,15 @@
+{% extends "main.twig" %}
+
+{% block auth %}
+
+    {% if _SESSION.user == true %}
+        <h2>Welcome {{ user.name }}</h2>
+    {% else %}
+        <form method="post">
+            <input type="text" name="login" placeholder="login">
+            <input type="text" name="password" placeholder="password">
+            <input type="submit" name="auth">
+        </form>
+    {% endif %}
+
+{% endblock %}

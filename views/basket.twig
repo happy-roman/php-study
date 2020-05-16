@@ -1,16 +1,32 @@
 {% extends 'layouts/main.twig' %}
 
 {% block content %}
-{% for good in basket %}
-    <div>
-        <h1>{{ good.name }} </h1>
-        <h3>Цена:  {{ good.price }}  </h3>
-        <p>
-            <a href="/good/one?id={{ good.id }}">
-                <img src="https://via.placeholder.com/75" alt = "img"/>
-            </a>
-        </p>
-        <p>Сумма: {{ good.price * good.count }}</p>
-    </div>
-    <hr>
+{#    {% for goods in basket %}#}
+        {% for good in basket %}
+            <div style="    margin: 0 auto;">
+                <h1>{{ good.name }}</h1>
+                <p>
+                    <a href="/good/one?id={{ good.id }}">
+                        <img src="https://via.placeholder.com/100" alt = "img"/>
+                    </a>
+                </p>
+                <h3>Цена:  {{ good.price }}</h3>
+                <p>Количество:  {{ good.count }}</p>
+                <div style="display: flex; justify-content: space-around">
+                    <p>
+                        <a href="/basket/minusCount?id={{ good.id }}">
+                            <img src="minus.png" alt="minus" style="width: 20px">
+                        </a>
+                    </p>
+                    <p>
+                        <a href="/basket/addCount?id={{ good.id }}">
+                            <img src="plus.png" alt="plus" style="width: 20px">
+                        </a>
+                    </p>
+                </div>
+
+                <h4>Сумма: {{ good.price * good.count }}</h4>
+            </div>
+        {% endfor %}
+{#    {% endfor %}#}
 {% endblock %}

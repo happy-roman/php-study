@@ -22,6 +22,8 @@ class App
     {
         $this->config = $config;
         $this->runController();
+
+//        session_start(); //перенес запуск сесии на runController
     }
 
     public function getContainer()
@@ -34,6 +36,7 @@ class App
 
     protected function runController()
     {
+        session_start();
         $request = $this->request;
         $controllerName = $request->getControllerName();
         if (empty($controllerName)) {
