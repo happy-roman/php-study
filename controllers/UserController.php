@@ -31,6 +31,8 @@ class UserController extends Controller
         return $this->render(
             'userAll',
             [
+                'user' => $_SESSION['user'],
+                'sessionAuth' => $_SESSION['auth'],
                 'users' => $users,
                 'title' => 'Все пользователи',
                 'menu'=> $this->getMenu()
@@ -53,6 +55,8 @@ class UserController extends Controller
         return $this->render(
             'userAdd',
             [
+                'user' => $_SESSION['user'],
+                'sessionAuth' => $_SESSION['auth'],
                 'menu' => $this->getMenu(),
             ]
         );

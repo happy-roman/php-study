@@ -8,8 +8,23 @@
 
     <div style="max-width: 1200px; margin: 0 auto;">
         <p>login: roman | password: 555</p>
+
         {% block auth %}
+{#            {% if sessionAuth == true %}#}
+{#                <h2>Welcome {{ user }}</h2>#}
+{#                <a href="?exit=exit"> Log out</a>#}
+{#            {% else %}#}
+{#                <form method="post">#}
+{#                    <input type="text" name="login" placeholder="login">#}
+{#                    <input type="text" name="password" placeholder="password">#}
+{#                    <input type="submit" name="auth" value="Log in">#}
+{#                </form>#}
+{#            {% endif %}#}
         {% endblock %}
+
+        {% block welcome %}
+        {% endblock %}
+
 {#        <form method="post">#}
 {#            <input type="text" name="login" placeholder="login">#}
 {#            <input type="text" name="password" placeholder="password">#}
@@ -22,9 +37,10 @@
             {% else %}
                 <li><a href="/">Главная</a></li>
             {% endfor %}
-            {% if _SESSION.auth == true %}
+            {% if sessionAuth == true %}
                 <li><a href="/good/insert">Add Good</a></li>
                 <li><a href="/user/all">Users</a></li>
+                <li><a href="/auth?exit=exit">Exit</a></li>
             {% endif %}
         </ul>
 

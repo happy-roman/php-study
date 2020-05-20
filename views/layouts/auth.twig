@@ -2,14 +2,25 @@
 
 {% block auth %}
 
-    {% if _SESSION.user == true %}
-        <h2>Welcome {{ user.name }}</h2>
+    {% if sessionAuth == true %}
+        <h2>Welcome {{ user }}</h2>
+        {#<a href="?exit=exit"> Log out</a>#}
     {% else %}
         <form method="post">
             <input type="text" name="login" placeholder="login">
             <input type="text" name="password" placeholder="password">
-            <input type="submit" name="auth">
+            <input type="submit" name="auth" value="Log in">
         </form>
     {% endif %}
 
+{#        <form method="post">#}
+{#            <input type="text" name="login" placeholder="login">#}
+{#            <input type="text" name="password" placeholder="password">#}
+{#            <input type="submit">#}
+{#        </form>#}
+
+{% endblock %}
+
+{% block content %}
+    <h3>А тут мега крутые предложения для зарегистрированных пользователей</h3>
 {% endblock %}

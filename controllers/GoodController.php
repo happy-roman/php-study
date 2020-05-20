@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use App\entities\Good;
+use App\entities\User;
 use App\repositories\GoodRepository;
 
 class GoodController extends Controller
@@ -21,6 +22,7 @@ class GoodController extends Controller
         return $this->render(
             'goodOne',
             [
+                'sessionAuth' => $_SESSION['auth'],
                 'good' => $good,
                 'menu' => $this->getMenu(),
             ]
@@ -34,6 +36,8 @@ class GoodController extends Controller
         return $this->render(
             'goodAll',
             [
+                'user' => $_SESSION['user'],
+                'sessionAuth' => $_SESSION['auth'],
                 'goods' => $goods,
                 'title' => 'Все товары',
                 'menu' => $this->getMenu(),
@@ -54,7 +58,7 @@ class GoodController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $good = new Good();
             $good->name = $_POST['name'];
-            $good->info = $_POST['info'];
+            $good->text = $_POST['text'];
             $good->price = $_POST['price'];
 
             $this->getRepository('Good')->save($good);
@@ -65,6 +69,8 @@ class GoodController extends Controller
         return $this->render(
             'goodAdd',
             [
+                'user' => $_SESSION['user'],
+                'sessionAuth' => $_SESSION['auth'],
                 'menu' => $this->getMenu(),
             ]
         );

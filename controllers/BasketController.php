@@ -31,10 +31,12 @@ class BasketController extends Controller
     public function myBasketAction()
     {
         $this->basket = $_SESSION['goods'];
-        var_dump($this->basket);
+//        var_dump($this->basket);
         return $this->render(
             "basket",
             [
+                'user' => $_SESSION['user'],
+                'sessionAuth' => $_SESSION['auth'],
                 'basket'=>$this->basket,
                 'menu'=>$this->getMenu()
             ]

@@ -9,7 +9,8 @@ class AuthController extends Controller
 {
     protected $login;
     protected $password;
-    protected $location;
+
+    protected $defaultAction = 'auth';
 
     protected function authAction()
     {
@@ -21,8 +22,10 @@ class AuthController extends Controller
             $this->login = $_POST['login'];
             $this->password = $_POST['password'];
 
-            $sql = "SELECT id, login, password FROM users WHERE login = '$this->login'";
+            $sql = "SELECT id, name,login, password FROM users WHERE login = '$this->login'";
             $row = $this->app->db->find($sql);
+
+            $_SESSION['user'] = $row['name'];
 
             if (empty($row)) {
                 header('location: ' . $_SERVER['HTTP_REFERER']);
@@ -30,24 +33,38 @@ class AuthController extends Controller
             }
 
             if ($this->password == $row['password']) {
-//                session_start();
-                $_SESSION['auth'] = true;
+               $_SESSION['auth'] = true;
+               $this->sessionAuth = $_SESSION['auth'];
             }
             header('location: ' . $_SERVER['HTTP_REFERER']);
         }
+//        if ( !$_SESSION['auth'] == true )
+//        {
+//            return $this->render(
+//                'auth',
+//                [
+//                    'sessionAuth' => $_SESSION['auth'],
+//                    'menu' => $this->getMenu(),
+//                ]
+//            );
+//        }
 
-        if (!empty($_GET['exit'])) {
-            session_destroy();
-            header('location: ' . $_SERVER['HTTP_REFERER']);
-        }
-        var_dump($_SESSION);
         return $this->render(
             'auth',
             [
-//                ?????????????????
+                'sessionAuth' => $_SESSION['auth'],
+                'user'=> $_SESSION['user'],
+                'exit' => $this->userExit(),
                 'menu' => $this->getMenu(),
             ]
         );
     }
-
+// вынес в контроллер
+//    protected function userExit()
+//    {
+//        if (!empty($_GET['exit'])) {
+//            session_destroy();
+//            header('location: /' );
+//        }
+//    }
 }

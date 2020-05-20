@@ -9,6 +9,7 @@ use App\services\renderers\TwigRenderer;
 abstract class Controller
 {
     protected $defaultAction = 'all';
+    protected $sessionAuth = [];
 
     /**
      * @var TwigRenderer
@@ -41,7 +42,6 @@ abstract class Controller
     protected function render($template, $params)
     {
         return $this->renderer->render($template, $params);
-
     }
 
 
@@ -55,7 +55,7 @@ abstract class Controller
         return [
             [
                 'name'=>'Sign In',
-                'href'=>'/auth/auth'
+                'href'=>'/auth',
             ],
             [
                 'name'=> 'Sign Up',
@@ -70,5 +70,13 @@ abstract class Controller
                 'href'=> '/basket',
             ]
         ];
+    }
+    public function userExit()
+    {
+        if (!empty($_GET['exit'])) {
+            session_destroy();
+            header('location: /' );
+        }
+        return '';
     }
 }
