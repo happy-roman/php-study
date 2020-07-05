@@ -25,8 +25,6 @@ class BasketServices
 
         if (empty($goods[$id])) {
             $goods[$id] = [
-
-//                'good' => $good,
                 'name'=>$good->name,
                 'price'=>$good->price,
                 'id'=>$good->id,
@@ -57,6 +55,9 @@ class BasketServices
 
         if ($goods[$id]['count']==1) {
             unset($_SESSION['goods'][$id]);
+        }
+        if ($goods[$id]['count']==0) {
+            return true;
         }
         $goods[$id]['count'] = $goods[$id]['count']-1 ;
         $request->setSession('goods', $goods);
